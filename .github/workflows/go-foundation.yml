@@ -13,6 +13,10 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    env:
+      GOPATH: $HOME/go
+      PATH: $GOPATH/bin:$PATH
+
     steps:
     - uses: actions/checkout@v3
 
@@ -20,7 +24,7 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.20
-    
+
     - name: Download dependencies
       run: go get -v ./...
 
