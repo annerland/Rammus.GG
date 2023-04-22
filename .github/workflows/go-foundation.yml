@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOPATH: $HOME/go
+      PATHROOT: $GOPATH/bin:$PATHROOT
 
     steps:
     - uses: actions/checkout@v3
