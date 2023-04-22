@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: 1.20
 
@@ -28,8 +28,6 @@ jobs:
           echo ${GITHUB_WORKSPACE}
           echo ${GOPATH}
           echo ${GOROOT}
-        # env:
-        #   GOPATH: /home/runner/work/Rammus.GG/go
 
       - name: Build
         run: go build -v ./...
