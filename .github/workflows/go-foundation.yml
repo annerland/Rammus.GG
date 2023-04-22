@@ -5,47 +5,46 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Install tar
-      run: sudo apt-get update && sudo apt-get install tar
+      - name: Install tar
+        run: sudo apt-get update && sudo apt-get install tar
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.20
-    
-    - name: Debug
-      run: |
-        pwd
-        echo ${HOME}
-        echo ${GITHUB_WORKSPACE}
-        echo ${GOPATH}
-        echo ${GOROOT}
-      env:
-        GOPATH: /home/runner/work/Rammus.GG/go
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.20
 
-    - name: Download dependencies
-      run: go get -v ./...
-      env:
-        GOPATH: /home/runner/work/Rammus.GG/go
+      - name: Debug
+        run: |
+          pwd
+          echo ${HOME}
+          echo ${GITHUB_WORKSPACE}
+          echo ${GOPATH}
+          echo ${GOROOT}
+        env:
+          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
 
-    - name: Build
-      run: go build -v ./...
-      env:
-        GOPATH: /home/runner/work/Rammus.GG/go
+      - name: Download dependencies
+        run: go get -v ./...
+        env:
+          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
 
-    - name: Test
-      run: go test -v ./...
-      env:
-        GOPATH: /home/runner/work/Rammus.GG/go
+      - name: Build
+        run: go build -v ./...
+        env:
+          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
+
+      - name: Test
+        run: go test -v ./...
+        env:
+          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
