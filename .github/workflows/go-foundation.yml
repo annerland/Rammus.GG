@@ -14,12 +14,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      PATH: $GOPATH/bin:$PATH
       GOPATH: $HOME/go
 
     steps:
     - uses: actions/checkout@v3
-
-    - run: pwd
 
     - name: Set up Go
       uses: actions/setup-go@v3
