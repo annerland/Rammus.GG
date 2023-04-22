@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -11,17 +12,42 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello World!"))
+		_, err := w.Write([]byte("OK"))
+
+		if err != nil {
+			fmt.Printf("Error write")
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+
+			return
+		}
 	})
-	http.ListenAndServe(":3000", r)
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(404)
-		w.Write([]byte("route does not exist"))
+		_, err := w.Write([]byte("Route does not exist"))
+		if err != nil {
+			fmt.Printf("Error write")
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+
+			return
+		}
 	})
 
 	r.MethodNotAllowed(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(405)
-		w.Write([]byte("method is not valid"))
+		_, err := w.Write([]byte("Method is not valid"))
+		if err != nil {
+			fmt.Printf("Error write")
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+
+			return
+		}
 	})
+
+	err := http.ListenAndServe(":3000", r)
+	if err != nil {
+		fmt.Printf("Error starting the server")
+
+		return
+	}
 }
