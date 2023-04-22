@@ -15,12 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOPATH: $HOME/go
-      PATH: $GOPATH/bin:$PATH
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install tar
-      run: sudo apt-get update && sudo apt-get install tar
 
     - name: Set up Go
       uses: actions/setup-go@v3
