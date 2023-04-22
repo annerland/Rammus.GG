@@ -31,20 +31,20 @@ jobs:
           echo ${GITHUB_WORKSPACE}
           echo ${GOPATH}
           echo ${GOROOT}
-        env:
-          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
+        # env:
+        #   GOPATH: /home/runner/work/Rammus.GG/go
 
       - name: Download dependencies
         run: go get -v ./...
-        env:
-          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
+        # env:
+        #   GOPATH: /home/runner/work/Rammus.GG/go
 
       - name: Build
         run: go build -v ./...
-        env:
-          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
+        # env:
+        #   GOPATH: /home/runner/work/Rammus.GG/go
 
       - name: Test
         run: go test -v ./...
-        env:
-          GOPATH: /home/runner/work/Rammus.GG/Rammus.GG
+        # env:
+        #   GOPATH: /home/runner/work/Rammus.GG/go
