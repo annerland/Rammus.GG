@@ -42,6 +42,10 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+      env:
+        GOPATH: /home/runner/work/Rammus.GG/go
 
     - name: Test
       run: go test -v ./...
+      env:
+        GOPATH: /home/runner/work/Rammus.GG/go
