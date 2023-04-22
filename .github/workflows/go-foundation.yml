@@ -21,13 +21,10 @@ jobs:
         with:
           go-version: 1.20.3
 
-      - name: Debug
+      - name: Go env and version
         run: |
-          pwd
-          echo ${HOME}
-          echo ${GITHUB_WORKSPACE}
-          echo ${GOPATH}
-          echo ${GOROOT}
+          go version
+          go env
 
       - name: Build
         run: go build -v ./...
