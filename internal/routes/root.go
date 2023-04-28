@@ -5,8 +5,6 @@ import (
 	"net/http"
 )
 
-
-
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	n, err := io.WriteString(w, "OK")
 
