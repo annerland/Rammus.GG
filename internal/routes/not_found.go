@@ -1,20 +1,18 @@
 package routes
 
 import (
-	"fmt"
+	"io"
 	"net/http"
 )
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(404)
 
-	_, err := w.Write([]byte("Route does not exist"))
+	n, err := io.WriteString(w, "Route does not exist")
 
-	if err != nil {
-		fmt.Printf("Error write")
+	isErr := logErr(n, err)
 
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-
+	if isErr {
 		return
 	}
 }

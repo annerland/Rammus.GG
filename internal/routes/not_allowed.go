@@ -1,20 +1,18 @@
 package routes
 
 import (
-	"fmt"
+	"io"
 	"net/http"
 )
 
 func notAllowedHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(405)
 
-	_, err := w.Write([]byte("Method is not valid"))
+	n, err := io.WriteString(w, "Method is not valid")
 
-	if err != nil {
-		fmt.Printf("Error write")
+	isErr := logErr(n, err)
 
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-
+	if isErr {
 		return
 	}
 }
