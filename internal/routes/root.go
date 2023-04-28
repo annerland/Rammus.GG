@@ -1,18 +1,17 @@
 package routes
 
 import (
-	"fmt"
 	"net/http"
 )
 
+
+
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	_, err := w.Write([]byte("OK"))
+	n, err := w.Write([]byte("OK"))
 
-	if err != nil {
-		fmt.Printf("Error write")
+	isErr := logErr(n, err)
 
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-
+	if isErr {
 		return
 	}
 }
